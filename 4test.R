@@ -19,6 +19,10 @@ descriptMetric(alter, name = "Alter")
 #(b)
 descriptCategoric(fach, name = "Studienfach")
 descriptCategoric(unlist(dataset[1]), "Alter")
+#(c)
+descriptBiCategoric(fach, intMathe, name1 = "Studienfach", name2 = "Interesse an Mathe")
+#(d)
+descriptBiMetricBinary(alter, matheLK, nameM = "Alter", nameB = "Mathe LK")
 
 #(f)
 visualizeCategoric(x, ymin = 0, ymax = 50, title = "Test",
@@ -31,7 +35,6 @@ visualizeBiCategoric(c1 = fach, c2 = intInfo, title = "Studienfach / Interesse a
 funcB(fach)
 funcF(fach)
 funcE(unlist(dataset[4]))
-
 funcC(fach, intMathe)
 
 # Test der helper_funcions.R
@@ -40,4 +43,12 @@ modus(fach)
 
 #Sonstige Tests
 
+#(c)
 table(fach, intMathe)
+
+chisq.test(fach, intMathe)
+
+#alternative relative Häufigkeitstabelle?
+testTable <- table(fach)
+prop.table(testTable)
+           

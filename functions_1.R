@@ -1,8 +1,14 @@
 #Funktionen R Skript 1
 
-#TODO: Generelle Infos überarbeiten
-#Dies ist ein Rahmen für die zu schreibenden Funktionen (a) bis (f)
+#Dieses Skript stellt Funktionen zur Verfügung, die für die Auswertung
+#(Deskription und Visualisierung) des in 2. erstellten Datensatzes optimiert sind
 
+#TODO:  (a)(b)(c)(g) - reviewen
+#       (d) - fortführen (s.u.)
+#       (e)(h) - TODO
+#       (f) - erweitern (s.u.)
+
+library(DescTools)
 
 #TODO: Fertig - Please Review
 #(a) decsriptMetric
@@ -39,34 +45,48 @@ descriptCategoric <- function(c1, name) {
   print(table(c1)/length(c1))
 }
 
+#TODO: Fertig - Please Review
 #(c) descriptBiCategoric
-#Short:   Funktion zur Deskription zweier kategorischer Variablen
-#Input:   ?
-#Output:  ?
-descriptBiCategoric <- function() {
-  #TODO
+#Short:     Funktion zur Deskription zweier kategorialer Variablen
+#Input:     c1, c2 - katetegoriale Variablen (als Vektoren)
+#Output:    Häufigkeitstabellen (absolut/relativ); 
+#           Cramers- und Pearson-Kontingenzindex
+#Funktion:  Häufigkeitstabllen mit Standardfunktionen; Kontingenzindizes mit
+#           library DescTools
+descriptBiCategoric <- function(c1, c2, name1, name2) {
+  hTable <- table(c1, c2)
+  cat("c1 = ", name1, "; c2 = ", name2, "\n")
+  cat("Absolute Häufigkeitstabelle: \n")
+  print(hTable)
+  cat("\n Relative Häufigkeitstabelle: \n")
+  print(prop.table(hTable))
+  cat("Cramers Kontingenzindex: ", CramerV(c1, c2), "\n")
+  cat("Pearson Kontingenzindex: ", ContCoef(c1, c2), "\n")
 }
 
 #(d) descriptBiMetricBinary
 #Short:   Funktion zur Deskription einer metrischen und einer binären Variable
-#Input:   ?
+#Input:   m - metrische Variable (Vektor); b - dichotome Variable (Vektor)
 #Output:  ?
-descriptBiMetricBinary <- function() {
-  #TODO  
+descriptBiMetricBinary <- function(m, b, nameM, nameB) {
+  cat("m = ", nameM, "; b = ", nameB, "\n")
+  hTable <- table(m, b)
+  hTable
+  #TODO: split m based on b -> calculate (a) descriptMetric for both parts -> compare
 }
 
-#(e) categorize
+#(e) categorizeQuanileBased
 #Short:   Funktion die eine Variable, mindestens ordinal skaliert, kategorisiert
 #Input:   ?
 #Output:  ?
-categorize <- function() {
+categorizeQuanileBased <- function() {
   #TODO
 }
 
 #TODO: eventuell noch mit relativen Häufigkeiten
 #(f) visualizeCategoic
 #Short:     Erstellt Balkendiagramm für eine kategorische Variable
-#Input:     c1 - kategorische Variable; Rest selbsterklärend
+#Input:     c1 - kategoriale Variable; Rest selbsterklärend
 #Output:    Balkendiagramm (mit absoluten Häufigkeiten)
 #Funktion:  Erstellt Balkendiagramm mit Standardfunktion
 visualizeCategoric <- function(c1, ymin, ymax, title, ylabel, xlabel) {
@@ -82,4 +102,15 @@ visualizeCategoric <- function(c1, ymin, ymax, title, ylabel, xlabel) {
 #Funktion:  Erstellt Mosaikplot mit Standardfunktion
 visualizeBiCategoric <- function(c1, c2, title, xlabel, ylabel) {
   mosaicplot(c1~c2, main = title, xlab = xlabel, ylab = ylabel)
+}
+
+
+#TODO:  eventuell Funktion schreiben, die 1 - 7 in sinnvolle Kategorien zusammenfasst?
+#(h)
+#Short:     
+#Input:     c1 - kategoriale Variable (als Vektor)
+#Output:    
+#Funktion:  
+categorize <- function(c1) {
+  
 }
