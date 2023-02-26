@@ -1,10 +1,10 @@
 #Funktionen R Skript 1
 
-#Dieses Skript stellt Funktionen zur Verfügung, die für die Auswertung
+#Dieses Skript stellt Funktionen zur Verfuegung, die fuer die Auswertung
 #(Deskription und Visualisierung) des in 2. erstellten Datensatzes optimiert sind
 
 #TODO:  (a)(b)(c)(g) - reviewen
-#       (d) - fortführen (s.u.)
+#       (d) - fortfuehren (s.u.)
 #       (e)(h) - TODO
 #       (f) - erweitern (s.u.)
 
@@ -12,7 +12,7 @@ library(DescTools)
 
 #TODO: Fertig - Please Review
 #(a) decsriptMetric
-#Short:     Berechnet verschiedene Lage- und Streuungsmaße einer metrischen 
+#Short:     Berechnet verschiedene Lage- und Streuungsmasse einer metrischen 
 #           Variablen und gibt diese aus.
 #Input:     metricV - eine metrische Variable (als Vektor) 
 #Output:    Mittelwert, Median, Standardabweichung, Minimum, Maximum, Modus
@@ -20,7 +20,7 @@ library(DescTools)
 #           abweichung, Minimum, Maximum und mit helper_functions Modus und gibt
 #           Ergebnisse aus.
 descriptMetric <- function(metricV, name) {
-  cat(name, "Lage- und Streuungsmaße:", "\n")
+  cat(name, "Lage- und Streuungsmasse:", "\n")
   cat("Mittelwert:", mean(metricV),"\n")
   cat("Median: ", median(metricV),"\n")
   cat("Modus: ", modus(metricV), "\n")
@@ -31,17 +31,17 @@ descriptMetric <- function(metricV, name) {
 
 #TODO: Fertig - Please Review
 #(b) descriptCategoric
-#Short:     Berechnet absolute u. relative Häufigkeiten einer kategoriellen   
+#Short:     Berechnet absolute u. relative Haeufigkeiten einer kategoriellen   
 #           Variable und gibt diese aus.
 #Input:     c1 - kategorielle Variable; name - Name der Variablen
-#Output:    Absolute & Relative Häufigkeitstabelle
-#Funktion:  Nutzt Standardfunktionen um Häufigkeitstabellen zu berechnen und
+#Output:    Absolute & Relative Haeufigkeitstabelle
+#Funktion:  Nutzt Standardfunktionen um Haeufigkeitstabellen zu berechnen und
 #           auszugeben
 descriptCategoric <- function(c1, name) {
-  cat("Häufigkeitstabellen", name, "\n")
-  print("Absolute Häufigkeitstabelle")
+  cat("Haeufigkeitstabellen", name, "\n")
+  print("Absolute Haeufigkeitstabelle")
   print(table(c1))
-  print("Relative Häufigkeitstabelle")
+  print("Relative Haeufigkeitstabelle")
   print(table(c1)/length(c1))
 }
 
@@ -49,23 +49,23 @@ descriptCategoric <- function(c1, name) {
 #(c) descriptBiCategoric
 #Short:     Funktion zur Deskription zweier kategorialer Variablen
 #Input:     c1, c2 - katetegoriale Variablen (als Vektoren)
-#Output:    Häufigkeitstabellen (absolut/relativ); 
+#Output:    Haeufigkeitstabellen (absolut/relativ); 
 #           Cramers- und Pearson-Kontingenzindex
-#Funktion:  Häufigkeitstabllen mit Standardfunktionen; Kontingenzindizes mit
+#Funktion:  Haeufigkeitstabllen mit Standardfunktionen; Kontingenzindizes mit
 #           library DescTools
 descriptBiCategoric <- function(c1, c2, name1, name2) {
   hTable <- table(c1, c2)
   cat("c1 = ", name1, "; c2 = ", name2, "\n")
-  cat("Absolute Häufigkeitstabelle: \n")
+  cat("Absolute Haeufigkeitstabelle: \n")
   print(hTable)
-  cat("\n Relative Häufigkeitstabelle: \n")
+  cat("\n Relative Haeufigkeitstabelle: \n")
   print(prop.table(hTable))
   cat("Cramers Kontingenzindex: ", CramerV(c1, c2), "\n")
   cat("Pearson Kontingenzindex: ", ContCoef(c1, c2), "\n")
 }
 
 #(d) descriptBiMetricBinary
-#Short:   Funktion zur Deskription einer metrischen und einer binären Variable
+#Short:   Funktion zur Deskription einer metrischen und einer binaeren Variable
 #Input:   m - metrische Variable (Vektor); b - dichotome Variable (Vektor)
 #Output:  ?
 descriptBiMetricBinary <- function(m, b, nameM, nameB) {
@@ -73,6 +73,9 @@ descriptBiMetricBinary <- function(m, b, nameM, nameB) {
   hTable <- table(m, b)
   hTable
   #TODO: split m based on b -> calculate (a) descriptMetric for both parts -> compare
+  # tapply(m,b,table) macht das was du suchst, ich weiÃŸ jedoch nicht 
+  # wie man die hTable von oben UND tapply ausgeben lassen kann
+  
 }
 
 #(e) categorizeQuanileBased
@@ -83,11 +86,11 @@ categorizeQuanileBased <- function() {
   #TODO
 }
 
-#TODO: eventuell noch mit relativen Häufigkeiten
+#TODO: eventuell noch mit relativen Haeufigkeiten
 #(f) visualizeCategoic
-#Short:     Erstellt Balkendiagramm für eine kategorische Variable
-#Input:     c1 - kategoriale Variable; Rest selbsterklärend
-#Output:    Balkendiagramm (mit absoluten Häufigkeiten)
+#Short:     Erstellt Balkendiagramm faer eine kategorische Variable
+#Input:     c1 - kategoriale Variable; Rest selbsterklaerend
+#Output:    Balkendiagramm (mit absoluten Haeufigkeiten)
 #Funktion:  Erstellt Balkendiagramm mit Standardfunktion
 visualizeCategoric <- function(c1, ymin, ymax, title, ylabel, xlabel) {
   barplot(table(c1), ylim = c(ymin, ymax), main = title, xlab = xlabel,
@@ -96,8 +99,8 @@ visualizeCategoric <- function(c1, ymin, ymax, title, ylabel, xlabel) {
 
 #TODO: Fertig - Please Review
 #(g) visualizeBiCategoic
-#Short:     Funktion die für zwei kategoriale Variablen einen Mosaikplot erstellt
-#Input:     c1, c2 - kategoriale Variablen; Rest selbsterklärend
+#Short:     Funktion die fuer zwei kategoriale Variablen einen Mosaikplot erstellt
+#Input:     c1, c2 - kategoriale Variablen; Rest selbsterklaerend
 #Output:    Mosaikplot (c1 auf x-Achse, c2 auf y-Achse)
 #Funktion:  Erstellt Mosaikplot mit Standardfunktion
 visualizeBiCategoric <- function(c1, c2, title, xlabel, ylabel) {
