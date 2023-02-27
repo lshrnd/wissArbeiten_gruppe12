@@ -25,7 +25,11 @@ descriptBiCategoric(fach, intMathe, name1 = "Studienfach", name2 = "Interesse an
 #(d)
 descriptBiMetricBinary(alter, matheLK, nameM = "Alter", nameB = "Mathe LK")
 #(e)
-categorizeQuanileBased(intMathe)
+z <- categorizeQuanileBased(intMathe)
+visualizeCategoric(z, ymax = 70, title = "Klassifikation IntMathe",
+                   ylabel = "abs. Häufigkeit", xlabel = "Interesse an Mathe")
+
+visualizeBiCategoric(fach, z, "Fach / IntMathe", xlabel = "Studienfach", ylabel = "Interesse an Mathe")
 #(f)
 visualizeCategoric(x, ymin = 0, ymax = 50, title = "Test",
                    xlabel = "Studienfach", ylabel = "Anzahl Studenten")
