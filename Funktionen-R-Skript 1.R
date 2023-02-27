@@ -3,8 +3,6 @@
 #Dieses Skript stellt Funktionen zur Verfuegung, die fuer die Auswertung
 #(Deskription und Visualisierung) des in 2. erstellten Datensatzes optimiert sind
 
-#TODO:  (e) kommentieren, verbessern
-
 library(DescTools)
 
 #(a) descriptMetric
@@ -80,16 +78,16 @@ descriptBiMetricBinary <- function(m, b, nameM, nameB) {
   descriptMetric(b1, name = c(nameM, "mit", nameB, ":"))
 }
 
-#(e) categorizeQuanileBased
+#(e) categorizeQuantileBased
 #Short:     Funktion die eine Variable, min. ordinal skaliert, kategorisiert
 #Input:     x - Variable, min. ordinal skaliert (Vektor)
-#Output:    Kategorisierte Daten von Interesse an Mathe/Informatik mit Levels (niedrig, mittel und hoch) 
-#Funktion:  faktorisiert ordinale Variablen mithilfe von Standardfunktioen in:
+#Output:    res.fac - Faktor; Kategorisierte Daten von Interesse an Mathe/
+#           Informatik mit Levels (niedrig, mittel und hoch) 
+#Funktion:  faktorisiert ordinale Variablen mithilfe von Standardfunktionen in:
 #           niedrig, mittel, hoch
-
-categorizeQuanileBased <- function(x){
-  lower.quan <- quantile(x, prob = 0.25)
-  upper.quan <- quantile(x, prob = 0.75)
+categorizeQuantileBased <- function(x){
+  lower.quan <- Quantile(x, prob = 0.25)
+  upper.quan <- Quantile(x, prob = 0.75)
   lev.list <- c(1,2,3,4,5,6,7)
   for(i in 1:length(lev.list)){
     if(lev.list[i] < lower.quan){
@@ -112,7 +110,7 @@ categorizeQuanileBased <- function(x){
 #Input:     c1 - kategoriale Variable (Vektor); Rest selbsterklaerend
 #Output:    Balkendiagramm (mit absoluten Haeufigkeiten)
 #Funktion:  Erstellt Balkendiagramm mit Standardfunktion
-visualizeCategoric <- function(c1, ymin, ymax, title, ylabel, xlabel) {
+visualizeCategoric <- function(c1, ymin = 0, ymax, title, ylabel, xlabel) {
   barplot(table(c1), ylim = c(ymin, ymax), main = title, xlab = xlabel,
           ylab = ylabel)
 }
@@ -125,3 +123,4 @@ visualizeCategoric <- function(c1, ymin, ymax, title, ylabel, xlabel) {
 visualizeBiCategoric <- function(c1, c2, title, xlabel, ylabel) {
   mosaicplot(c1~c2, main = title, xlab = xlabel, ylab = ylabel)
 }
+

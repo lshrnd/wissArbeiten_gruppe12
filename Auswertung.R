@@ -1,6 +1,6 @@
 #Auswertung.R
 #TODO Datensatz mithilfe von Funktionen-R-Skript 1.R auswerten.
-#     Ergebnisse in Dokument sammeln, in GitHub stellen.
+#     Ergebnisse in Dokument sammeln, in GitHub stellen. -> Diskussion!
 
 #Datensatz laden
 dataset = read.csv("data_students.csv")
@@ -28,18 +28,16 @@ visualizeCategoric(fach, title = "Balkendiagramm Studienfach", ymax = 40,
 descriptCategoric(intMathe, "Interesse an Mathe")
 visualizeCategoric(intMathe, title = "Balkendiagramm Interesse an Mathe", 
                    ymax = 35, xlabel = "Interesse an Mathe", ylabel = "abs. Häufigkeit")
-intMatheCat <- categorizeQuanileBased(intMathe)
+intMatheCat <- categorizeQuantileBased(intMathe)
 visualizeCategoric(intMatheCat, ymax = 70, title = "Klassifikation Interesse an Mathe",
                    ylabel = "abs. Häufigkeit", xlabel = "Interesse an Mathe")
-
 #Interesse an Informatik
 descriptCategoric(intInfo, "Interesse an Info")
 visualizeCategoric(intInfo, title = "Balkendiagramm Interesse an Info", 
                    ymax = 25, xlabel = "Interesse an Info", ylabel = "abs. Häufigkeit")
-intInfoCat <- categorizeQuanileBased(intInfo)
+intInfoCat <- categorizeQuantileBased(intInfo)
 visualizeCategoric(intInfoCat, ymax = 70, title = "Klassifikation Interesse an Info",
                    ylabel = "abs. Häufigkeit", xlabel = "Interesse an Info")
-
 #Mathe LK
 descriptCategoric(matheLK, "Mathe LK")
 visualizeCategoric(matheLK, title = "Balkendiagramm Mathe LK", 
@@ -50,4 +48,52 @@ visualizeCategoric(matheLK, title = "Balkendiagramm Mathe LK",
 #Alter und Mathe LK
 descriptBiMetricBinary(alter, matheLK, "Alter", "Mathe LK")
 
-#TODO: Weitere Abhängigkeiten untersuchen mit (c) und (g)
+#Studienfach und Interesse an Mathe
+descriptBiCategoric(fach, intMathe, "Studienfach", "Interesse an Mathe")
+descriptBiCategoric(fach, intMatheCat, "Studienfach", "Interesse an Mathe (Klassifiziert)")
+visualizeBiCategoric(fach, intMathe, title = "Studienfach und Interesse an Mathe",
+                     xlabel = "Studienfach", ylabel = "Interesse an Mathe")
+visualizeBiCategoric(fach, intMatheCat, title = "Studienfach und Interesse an Mathe",
+                     xlabel = "Studienfach", ylabel = "Interesse an Mathe (Klassifiziert)")
+
+#Studienfach und Interesse an Info
+descriptBiCategoric(fach, intInfo, "Studienfach", "Interesse an Info")
+descriptBiCategoric(fach, intInfoCat, "Studienfach", "Interesse an Info (Klassifiziert)")
+visualizeBiCategoric(fach, intInfo, title = "Studienfach und Interesse an Info",
+                     xlabel = "Studienfach", ylabel = "Interesse an Info")
+visualizeBiCategoric(fach, intInfoCat, title = "Studienfach und Interesse an Info",
+                     xlabel = "Studienfach", ylabel = "Interesse an Info (Klassifiziert)")
+
+#Interesse an Mathe und Intersse an Info
+descriptBiCategoric(intMathe, intInfo, "Interesse an Mathe", "Interesse an Info")
+descriptBiCategoric(intMathe, intInfoCat, "Interesse an Mathe",
+                    "Interesse an Info (Klassifiziert)")
+descriptBiCategoric(intMatheCat, intInfo, "Interesse an Mathe (Klassifiziert)",
+                    "Interesse an Info")
+descriptBiCategoric(intMatheCat, intInfoCat, "Interesse an Mathe (klassifiziert)",
+                    "Interesse an Info (Klassifiziert)")
+visualizeBiCategoric(intMathe, intInfo, title = "Interesse an Mathe und Intersse an Info",
+                     xlabel = "Interesse an Mathe", ylabel = "Interesse an Info")
+visualizeBiCategoric(intMathe, intInfoCat, title = "Interesse an Mathe und Intersse an Info",
+                     xlabel = "Interesse an Mathe", ylabel = "Interesse an Info (Klassifiziert)")
+visualizeBiCategoric(intMatheCat, intInfo, title = "Interesse an Mathe und Intersse an Info",
+                     xlabel = "Interesse an Mathe (klassifiziert)", ylabel = "Interesse an Info")
+visualizeBiCategoric(intMatheCat, intInfoCat, title = "Interesse an Mathe und Intersse an Info",
+                     xlabel = "Interesse an Mathe (klassifiziert)", ylabel = "Interesse an Info (klassifiziert)")
+
+#Mathe LK und Interesse an Mathe
+descriptBiCategoric(matheLK, intMathe, "Mathe LK", "Interesse an Mathe")
+descriptBiCategoric(matheLK, intMatheCat, "Mathe LK", "Interesse an Mathe (klassifiziert)")
+visualizeBiCategoric(matheLK, intMathe, title = "Mathe LK und Interesse an Mathe",
+                     xlabel = "Mathe LK", ylabel = "Interesse an Mathe")
+visualizeBiCategoric(matheLK, intMatheCat, title = "Mathe LK und Interesse an Mathe",
+                     xlabel = "Mathe LK", ylabel = "Interesse an Mathe (Klassifiziert)")
+
+#Mathe LK und Interesse an Info
+descriptBiCategoric(matheLK, intInfo, "Mathe LK", "Interesse an Info")
+descriptBiCategoric(matheLK, intInfoCat, "Mathe LK", "Interesse an Info (klassifiziert)")
+visualizeBiCategoric(matheLK, intInfo, title = "Mathe LK und Interesse an Info",
+                     xlabel = "Info LK", ylabel = "Interesse an Info")
+visualizeBiCategoric(matheLK, intInfoCat, title = "Mathe LK und Interesse an Info",
+                     xlabel = "Info LK", ylabel = "Interesse an Info (Klassifiziert)")
+
