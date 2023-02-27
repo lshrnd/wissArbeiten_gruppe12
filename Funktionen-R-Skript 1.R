@@ -101,10 +101,10 @@ categorizeQuanileBased.neu <- function(x){
   upper.quan <- quantile(x, prob = 0.75)
   lev.list <- c(1,2,3,4,5,6,7)
   for(i in 1:length(lev.list)){
-    if(lev.list[i] < thirtee.quan){
+    if(lev.list[i] < lower.quan){
       lev.list[i] <- "niedrig"
     }
-    else if(lev.list[i] > seventy.quan){
+    else if(lev.list[i] > upper.quan){
       lev.list[i] <- "hoch"
     }
     else{
