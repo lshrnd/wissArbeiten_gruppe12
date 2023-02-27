@@ -3,15 +3,11 @@
 #Dieses Skript stellt Funktionen zur Verfuegung, die fuer die Auswertung
 #(Deskription und Visualisierung) des in 2. erstellten Datensatzes optimiert sind
 
-#TODO:  (a)(b)(c)(g) - reviewen
-#       (d) - fortfuehren (s.u.)
-#       (e)(h) - TODO
-#       (f) - erweitern (s.u.)
+#TODO:  (e) kommentieren, verbessern
 
 library(DescTools)
 
-#TODO: Fertig - Please Review
-#(a) decsriptMetric
+#(a) descriptMetric
 #Short:     Berechnet verschiedene Lage- und Streuungsmasse einer metrischen 
 #           Variablen und gibt diese aus.
 #Input:     metricV - eine metrische Variable (als Vektor) 
@@ -20,16 +16,17 @@ library(DescTools)
 #           abweichung, Minimum, Maximum und mit helper_functions Modus und gibt
 #           Ergebnisse aus.
 descriptMetric <- function(metricV, name) {
-  cat(name, "Lage- und Streuungsmasse:", "\n")
+  cat(name, "\n")
+  cat("Lage- und Streuungsmasse: \n")
   cat("Mittelwert:", mean(metricV),"\n")
   cat("Median: ", median(metricV),"\n")
   cat("Modus: ", modus(metricV), "\n")
   cat("Standardabweichung: ", sd(metricV),"\n")
   cat("Kleinster Wert: ", min(metricV), "\n")
   cat("Groesster Wert: ", max(metricV), "\n")
+  cat("\n")
 }
 
-#TODO: Fertig - Please Review
 #(b) descriptCategoric
 #Short:     Berechnet absolute u. relative Haeufigkeiten einer kategoriellen   
 #           Variable und gibt diese aus.
@@ -45,7 +42,6 @@ descriptCategoric <- function(c1, name) {
   print(table(c1)/length(c1))
 }
 
-#TODO: Fertig - Please Review
 #(c) descriptBiCategoric
 #Short:     Funktion zur Deskription zweier kategorialer Variablen
 #Input:     c1, c2 - katetegoriale Variablen (als Vektoren)
@@ -65,31 +61,42 @@ descriptBiCategoric <- function(c1, c2, name1, name2) {
 }
 
 #(d) descriptBiMetricBinary
-#Short:   Funktion zur Deskription einer metrischen und einer binaeren Variable
-#Input:   m - metrische Variable (Vektor); b - dichotome Variable (Vektor)
-#Output:  ?
+#Short:     Funktion zur Deskription einer metrischen und einer binaeren Variable
+#Input:     m - metrische Variable (Vektor); b - dichotome Variable (Vektor)
+#Output:    Absolute Haeufigkeitstabelle; Lage- und Streuungsmaﬂe der metrischen
+#           Variablen, nach Aufteilung anhand der binaeren Variablen
+#Funktion:  H‰ufigkeitstabelle Standardfunktionen; Aufteilung (siehe
+#            Funktionen-R-Skript-2.R; Deskription siehe descriptMetric
 descriptBiMetricBinary <- function(m, b, nameM, nameB) {
-  cat("m = ", nameM, "; b = ", nameB, "\n")
   hTable <- table(m, b)
-  hTable
-  #TODO: split m based on b -> calculate (a) descriptMetric for both parts -> compare
-  # tapply(m,b,table) macht das was du suchst, ich wei√ü jedoch nicht 
-  # wie man die hTable von oben UND tapply ausgeben lassen kann
-  
+  cat("m = ", nameM, "; b = ", nameB, "\n")
+  cat("Absolute H‰ufigkeitstabelle:")
+  print(hTable)
+  cat("\n")
+  splitted <- split(m, b, length = length(m))
+  b0 <- splitted[[1]]
+  b1 <- splitted[[2]]
+  descriptMetric(b0, name = c(nameM, "ohne", nameB, ":"))
+  descriptMetric(b1, name = c(nameM, "mit", nameB, ":"))
 }
 
+#TODO: Kommentare #Zu Verbessern: gibt manchmal NA raus, ich weiss nicht warum
 #(e) categorizeQuanileBased
-#Short:   Funktion die eine Variable, mindestens ordinal skaliert, kategorisiert
-#Input:   ?
-#Output:  ?
-categorizeQuanileBased <- function() {
-  #TODO
+#Short:     Funktion die eine Variable, min. ordinal skaliert, kategorisiert
+#Input:     x - Variable, min. ordinal skaliert (Vektor)
+#Output:    ?
+#Funktion:  faktorisiert ordinale Variablen mithilfe von Standardfunktioen in:
+#           sehr niedrig, niedrig, mittel, hoch, sehr hoch
+categorizeQuanileBased <- function(x) {
+  xfac <- factor(x, levels = quantile(x, probs=seq(from=0,to=1,by=0.15)),
+                labels = c("sehr niedrig","niedrig","niedrig","mittel","hoch",
+                           "hoch","sehr hoch"))
+  return(xfac)
 }
 
-#TODO: eventuell noch mit relativen Haeufigkeiten
 #(f) visualizeCategoic
 #Short:     Erstellt Balkendiagramm faer eine kategorische Variable
-#Input:     c1 - kategoriale Variable; Rest selbsterklaerend
+#Input:     c1 - kategoriale Variable (Vektor); Rest selbsterklaerend
 #Output:    Balkendiagramm (mit absoluten Haeufigkeiten)
 #Funktion:  Erstellt Balkendiagramm mit Standardfunktion
 visualizeCategoric <- function(c1, ymin, ymax, title, ylabel, xlabel) {
@@ -97,23 +104,11 @@ visualizeCategoric <- function(c1, ymin, ymax, title, ylabel, xlabel) {
           ylab = ylabel)
 }
 
-#TODO: Fertig - Please Review
 #(g) visualizeBiCategoic
 #Short:     Funktion die fuer zwei kategoriale Variablen einen Mosaikplot erstellt
-#Input:     c1, c2 - kategoriale Variablen; Rest selbsterklaerend
+#Input:     c1, c2 - kategoriale Variablen (Vektoren); Rest selbsterklaerend
 #Output:    Mosaikplot (c1 auf x-Achse, c2 auf y-Achse)
 #Funktion:  Erstellt Mosaikplot mit Standardfunktion
 visualizeBiCategoric <- function(c1, c2, title, xlabel, ylabel) {
   mosaicplot(c1~c2, main = title, xlab = xlabel, ylab = ylabel)
-}
-
-
-#TODO:  eventuell Funktion schreiben, die 1 - 7 in sinnvolle Kategorien zusammenfasst?
-#(h)
-#Short:     
-#Input:     c1 - kategoriale Variable (als Vektor)
-#Output:    
-#Funktion:  
-categorize <- function(c1) {
-  
 }

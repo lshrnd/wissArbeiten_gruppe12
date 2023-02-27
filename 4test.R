@@ -1,4 +1,5 @@
 #Daten laden
+#setwd("F:/Git/Repositories/wissArbeiten_gruppe12")
 dataset = read.csv("data_students.csv")
 dataset
 
@@ -23,7 +24,8 @@ descriptCategoric(unlist(dataset[1]), "Alter")
 descriptBiCategoric(fach, intMathe, name1 = "Studienfach", name2 = "Interesse an Mathe")
 #(d)
 descriptBiMetricBinary(alter, matheLK, nameM = "Alter", nameB = "Mathe LK")
-
+#(e)
+categorizeQuanileBased(intMathe)
 #(f)
 visualizeCategoric(x, ymin = 0, ymax = 50, title = "Test",
                    xlabel = "Studienfach", ylabel = "Anzahl Studenten")
@@ -41,12 +43,29 @@ funcC(fach, intMathe)
 modus(dataset[2])
 modus(fach)
 
+alter
+matheLK
+splitted <- split(alter, matheLK, 100)
+splitted[1]
+is.numeric(splitted[1])
+is.numeric(alter)
+descriptMetric(splitted[[1]], "test")
+descriptMetric(alter, "test")
+
 #Sonstige Tests
 
 #(c)
 table(fach, intMathe)
-
 chisq.test(fach, intMathe)
+#(d)
+x <- tapply(alter, matheLK, table)
+x
+x[1]
+x1 <- unlist(x[1])
+x1
+descriptMetric(x1, name = "test")
+x2 <- unlist(x[2])
+descriptMetric(x2, name = "test")
 
 #alternative relative Häufigkeitstabelle?
 testTable <- table(fach)
