@@ -63,14 +63,14 @@ descriptBiCategoric <- function(c1, c2, name1, name2) {
 #(d) descriptBiMetricBinary
 #Short:     Funktion zur Deskription einer metrischen und einer binaeren Variable
 #Input:     m - metrische Variable (Vektor); b - dichotome Variable (Vektor)
-#Output:    Absolute Haeufigkeitstabelle; Lage- und Streuungsmaße der metrischen
+#Output:    Absolute Haeufigkeitstabelle; Lage- und StreuungsmaÃŸe der metrischen
 #           Variablen, nach Aufteilung anhand der binaeren Variablen
-#Funktion:  Häufigkeitstabelle Standardfunktionen; Aufteilung (siehe
+#Funktion:  HÃ¤ufigkeitstabelle Standardfunktionen; Aufteilung (siehe
 #            Funktionen-R-Skript-2.R; Deskription siehe descriptMetric
 descriptBiMetricBinary <- function(m, b, nameM, nameB) {
   hTable <- table(m, b)
   cat("m = ", nameM, "; b = ", nameB, "\n")
-  cat("Absolute Häufigkeitstabelle:")
+  cat("Absolute HÃ¤ufigkeitstabelle:")
   print(hTable)
   cat("\n")
   splitted <- split(m, b, length = length(m))
@@ -92,6 +92,28 @@ categorizeQuanileBased <- function(x) {
                  labels = c("sehr niedrig","niedrig","niedrig","mittel","hoch",
                             "hoch","sehr hoch"))
   return(xfac)
+}
+
+#TODO: Feedback zu verbessern!
+#Neue Funktion fÃ¼r teil (e)
+categorizeQuanileBased.neu <- function(x){
+  lower.quan <- quantile(x, prob = 0.25)
+  upper.quan <- quantile(x, prob = 0.75)
+  lev.list <- c(1,2,3,4,5,6,7)
+  for(i in 1:length(lev.list)){
+    if(lev.list[i] < thirtee.quan){
+      lev.list[i] <- "niedrig"
+    }
+    else if(lev.list[i] > seventy.quan){
+      lev.list[i] <- "hoch"
+    }
+    else{
+      lev.list[i] <- "mittel"
+    }
+  }
+  res.fac <- factor(x, levels = c(1,2,3,4,5,6,7), labels = lev.list)
+  
+  return(res.fac)
 }
 
 #(f) visualizeCategoic
