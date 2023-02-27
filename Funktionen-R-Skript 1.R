@@ -80,23 +80,14 @@ descriptBiMetricBinary <- function(m, b, nameM, nameB) {
   descriptMetric(b1, name = c(nameM, "mit", nameB, ":"))
 }
 
-#TODO: Kommentare #Zu Verbessern: gibt manchmal NA raus, ich weiss nicht warum
 #(e) categorizeQuanileBased
 #Short:     Funktion die eine Variable, min. ordinal skaliert, kategorisiert
 #Input:     x - Variable, min. ordinal skaliert (Vektor)
-#Output:    ?
+#Output:    Kategorisierte Daten von Interesse an Mathe/Informatik mit Levels (niedrig, mittel und hoch) 
 #Funktion:  faktorisiert ordinale Variablen mithilfe von Standardfunktioen in:
-#           sehr niedrig, niedrig, mittel, hoch, sehr hoch
-categorizeQuanileBased <- function(x) {
-  xfac <- factor(x, levels = quantile(x, probs=seq(from=0,to=1,by=0.15)),
-                 labels = c("sehr niedrig","niedrig","niedrig","mittel","hoch",
-                            "hoch","sehr hoch"))
-  return(xfac)
-}
+#           niedrig, mittel, hoch
 
-#TODO: Feedback zu verbessern!
-#Neue Funktion für teil (e)
-categorizeQuanileBased.neu <- function(x){
+categorizeQuanileBased <- function(x){
   lower.quan <- quantile(x, prob = 0.25)
   upper.quan <- quantile(x, prob = 0.75)
   lev.list <- c(1,2,3,4,5,6,7)
