@@ -27,21 +27,23 @@ visualizeCategoric(fach, title = "Balkendiagramm Studienfach", ymax = 40,
 #Interesse an Mathe
 descriptCategoric(intMathe, "Interesse an Mathe")
 visualizeCategoric(intMathe, title = "Balkendiagramm Interesse an Mathe", 
-                   ymax = 35, xlabel = "Interesse an Mathe", ylabel = "abs. Häufigkeit")
+                   ymax = 35, xlabel = "Interesse an Mathe", ylabel = "abs. Haeufigkeit")
 intMatheCat <- categorizeQuantileBased(intMathe)
+descriptCategoric(intMatheCat, "Interesse an Mathe")
 visualizeCategoric(intMatheCat, ymax = 70, title = "Klassifikation Interesse an Mathe",
-                   ylabel = "abs. Häufigkeit", xlabel = "Interesse an Mathe")
+                   ylabel = "abs. Haeufigkeit", xlabel = "Interesse an Mathe")
 #Interesse an Informatik
 descriptCategoric(intInfo, "Interesse an Info")
 visualizeCategoric(intInfo, title = "Balkendiagramm Interesse an Info", 
-                   ymax = 25, xlabel = "Interesse an Info", ylabel = "abs. Häufigkeit")
+                   ymax = 25, xlabel = "Interesse an Info", ylabel = "abs. Haeufigkeit")
 intInfoCat <- categorizeQuantileBased(intInfo)
+descriptCategoric(intInfoCat, "Interesse an Info")
 visualizeCategoric(intInfoCat, ymax = 70, title = "Klassifikation Interesse an Info",
-                   ylabel = "abs. Häufigkeit", xlabel = "Interesse an Info")
+                   ylabel = "abs. Haeufigkeit", xlabel = "Interesse an Info")
 #Mathe LK
 descriptCategoric(matheLK, "Mathe LK")
 visualizeCategoric(matheLK, title = "Balkendiagramm Mathe LK", 
-                   ymax = 80, xlabel = "Mathe LK", ylabel = "abs. Häufigkeit")
+                   ymax = 80, xlabel = "Mathe LK", ylabel = "abs. Haeufigkeit")
 
 # (2) Untersuche auf moegliche Abhaengigkeiten zweier Variablen:
 
