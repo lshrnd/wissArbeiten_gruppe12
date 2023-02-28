@@ -1,12 +1,12 @@
 #Funktionen-R-Skript 2.R
-#stellt hilfreiche Funktionen für Funktionen-R-Skript 1 zur Verfuegung.
+#stellt hilfreiche Funktionen fuer Funktionen-R-Skript 1 zur Verfuegung.
 
 #(h1) modus
 #Short:     Berechnet den Modus einer Variablen
 #Input:     x - Variable (als Vektor)
 #Output:    Der/die haeufigste/n Wert/e
-#Funktion:  Isoliert alle einzigartigen Elemente in u, Vergleicht wie häufig
-#           jedes Element in x vorkommt, gibt häufigste/s Element/e zurück
+#Funktion:  Isoliert alle einzigartigen Elemente in u, Vergleicht wie haeufig
+#           jedes Element in x vorkommt, gibt haeufigste/s Element/e zurueck
 modus <- function(x) {
   u <- unique(x)
   tab <- tabulate(match(x, u))
@@ -19,7 +19,7 @@ modus <- function(x) {
 #Input:     toSplit - aufzuteilender Vektor;
 #           splitOn - Vektor mit Aufteilungsgrundlage
 #Output:    Eine Liste mit den beiden Ergebnisvektoren
-#Funktion:  Erzeugt zwei Vektoren und fügt diesen Elemente aus toSplit hinzu,
+#Funktion:  Erzeugt zwei Vektoren und fuegt diesen Elemente aus toSplit hinzu,
 #           abhaengig davon, welcher Wert am gleichen Index in splitOn steht.
 split <- function(toSplit, splitOn, length) {
   len <- c(1:length)

@@ -28,12 +28,12 @@ descriptBiMetricBinary(alter, matheLK, nameM = "Alter", nameB = "Mathe LK")
 z <- categorizeQuantileBased(intMathe)
 z
 visualizeCategoric(z, ymax = 70, title = "Klassifikation IntMathe",
-                   ylabel = "abs. Häufigkeit", xlabel = "Interesse an Mathe")
+                   ylabel = "abs. Haeufigkeit", xlabel = "Interesse an Mathe")
 visualizeBiCategoric(fach, z, "Fach / IntMathe", xlabel = "Studienfach", ylabel = "Interesse an Mathe")
 
 ageCat <- categorizeQuantileBased(alter)
 ageCat
-visualizeCategoric(ageCat, ymax = 75, title = "Alter Klassifiziert", ylabel = "abs. Häufigkeit", xlabel = "Alter")
+visualizeCategoric(ageCat, ymax = 75, title = "Alter Klassifiziert", ylabel = "abs. Haeufigkeit", xlabel = "Alter")
 
 #(f)
 visualizeCategoric(x, ymin = 0, ymax = 50, title = "Test",
@@ -76,7 +76,7 @@ descriptMetric(x1, name = "test")
 x2 <- unlist(x[2])
 descriptMetric(x2, name = "test")
 
-#alternative relative Häufigkeitstabelle?
+#alternative relative Haeufigkeitstabelle?
 testTable <- table(fach)
 prop.table(testTable)
            
