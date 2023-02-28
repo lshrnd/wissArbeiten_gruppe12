@@ -82,7 +82,7 @@ visualizeBiCategoric(intMathe, intInfoCat, title = "Interesse an Mathe und Inter
                      xlabel = "Interesse an Mathe", ylabel = "Interesse an Info (Klassifiziert)")
 visualizeBiCategoric(intMatheCat, intInfo, title = "Interesse an Mathe und Interesse an Info",
                      xlabel = "Interesse an Mathe (Klassifiziert)", ylabel = "Interesse an Info")
-visualizeBiCategoric(intMatheCat, intInfoCat, title = "Interesse an Mathe und Intersse an Info",
+visualizeBiCategoric(intMatheCat, intInfoCat, title = "Interesse an Mathe und Interesse an Info",
                      xlabel = "Interesse an Mathe (Klassifiziert)", ylabel = "Interesse an Info (Klassifiziert)")
 
 #Mathe LK und Interesse an Mathe
@@ -100,3 +100,4 @@ visualizeBiCategoric(matheLK, intInfo, title = "Mathe LK und Interesse an Info",
                      xlabel = "Mathe LK", ylabel = "Interesse an Info")
 visualizeBiCategoric(matheLK, intInfoCat, title = "Mathe LK und Interesse an Info",
                      xlabel = "Mathe LK", ylabel = "Interesse an Info (Klassifiziert)")
+
