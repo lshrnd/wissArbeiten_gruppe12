@@ -1,0 +1,239 @@
+\documentclass[paper=a4,                 % Papierformat
+               fontsize=12pt,            % (Standard-) Schriftgröße
+               parskip=half,             % Absatzformat halbzeilig
+               ngerman,                 % deutsche Trennung
+               ]{scrartcl}
+
+\usepackage[T1]{fontenc}                 % Schriftsatzkodierung
+\usepackage[utf8]{inputenc}              % Einleseschriftkodierung
+\usepackage{lmodern}                     % lmodern-Schriftsatz
+\usepackage{microtype}                   % Microtypographie-Paket
+\usepackage{babel}                       % Anpassung an deutschen Sprachraum
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{multirow}
+\usepackage{rotating}
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{3cm}
+            
+        \Huge
+        \textbf{GitHub - Auswertung}
+            
+        \vspace{0.5cm}
+        \LARGE
+        Wissenschaftliches Arbeiten\\ 
+        \Large
+        Wintersemester 2022/2023
+        \vspace{1.5cm}           
+        \vfill    
+        \vspace{0.8cm} 
+        \Large
+        Technische Universität Dortmund\\
+            
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+\section{Vorinformationen}
+Wir haben einen Datensatz der von 100 Studierenden folgende Variablen erfasst:
+\begin{itemize}
+\item Alter
+\item Studienfach
+\item Interesse an Mathematik
+\item Interesse an Programmieren
+\item Mathe-LK
+\end{itemize}
+
+Da wir genau 100 Einträge im Datensatz haben, lässt sich an den relativen Häufigkeiten direkt die absolute Häufigkeit ablesen. Deshalb wird im folgenden meist nur eine der beiden Häufigkeiten angegeben.
+\newpage
+\section{Analyse der einzelnen Variablen}
+\subsection{Alter}
+Mittelwert: 25.02 \newline
+Median:  25 \newline
+Modus:  25 \newline
+Standardabweichung:  1.588977 \newline
+Kleinster Wert:  21 \newline
+Größter Wert:  28 
+
+\subsection{Studienfach}
+\includegraphics[scale=0.8]{studienfach_barplot} \newline
+Relative Häufigkeiten der verschiedenen Fächer: \\ \newline
+\begin{tabular}{c|c|c|c}
+Data Science & Informatik & Mathematik & Statistik \\
+\hline
+0.36 & 0.04 & 0.21 & 0.39 \\
+\end{tabular}
+
+\subsection{Interesse an Mathematik}
+Die Studierenden gaben auf einer Skala von 1 bis 7 ihr Interesse an Mathematik an: \\ \newline
+\begin{tabular}{c|c|c|c|c|c|c}
+1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+\hline
+8 & 7 & 6 & 7 & 34 & 19 & 19 \\
+\end{tabular}
+\newline \\
+Nach Kategorisierung in niedriges, mittleres und hohes Interesse ergibt sich: \\ \newline
+\begin{tabular}{c|c|c}
+niedrig & mittel & hoch \\
+\hline
+21 & 60 & 19 \\
+\end{tabular} 
+\\
+
+
+\subsection{Interesse an Informatik}
+Die Studierenden gaben auf einer Skala von 1 bis 7 ihr Interesse an Informatik an: \\ \newline
+\begin{tabular}{c|c|c|c|c|c|c}
+1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+\hline
+10 & 9 &15 &19& 13& 21& 13 \\
+\end{tabular}
+\newline \\
+Nach Kategorisierung in niedriges, mittleres und hohes Interesse ergibt sich: \\ \newline
+\begin{tabular}{c|c|c}
+niedrig & mittel & hoch \\
+\hline
+19 & 68 & 13 \\
+\end{tabular} 
+\\
+
+\begin{figure}[h]
+   \begin{minipage}[b]{.4\linewidth}
+      \includegraphics[scale=0.7]{interesse_mathe_barplot}
+   \end{minipage}
+   \hspace{.1\linewidth}% Abstand zwischen Bilder
+   \begin{minipage}[b]{.4\linewidth} % [b] => Ausrichtung an \caption
+	\includegraphics[scale=0.7]{interesse_info_barplot}
+   \end{minipage}
+\end{figure}
+
+\subsection{Mathe-LK}
+Von den 100 Studierenden hatten 26 keinen Mathe-LK und 74 hatten Mathe-LK. \\
+\includegraphics[scale=0.7]{mathelk_barplot}
+
+\newpage
+\section{Zusammenhänge zwischen zwei Variablen}
+\subsection{Alter und Mathe-LK}
+Wir haben die Variable Alter aufgeteilt anhand der Information, ob sie Mathe-LK hatten oder nicht. \newline
+\begin{tabular}{r|c|c}
+& ohne Mathe-LK & mit Mathe-LK \\
+\hline
+Mittelwert: & 24.88462 & 25.06757 \\
+Median:  & 25 & 25 \\
+Modus: &  25 & 25\\
+Standardabweichung: & 1.505375 & 1.624564\\
+Kleinster Wert: & 22 & 21\\
+Größter Wert: & 27 & 28\\
+\end{tabular}
+
+\newpage
+\subsection{Studienfach und Interesse an Mathe}
+\begin{tabular}{l||c|c|c|c|c|c|c}
+& 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+\hline
+Data Science & 7 & 5 & 6 & 7 &11 & 0 & 0\\
+Informatik  &  1 & 2 & 0 & 0 & 1&  0&  0\\
+Mathe     &    0 & 0 & 0 & 0 & 8 & 6 & 7\\
+Statistik     &0  &0 & 0 & 0 &14 &13& 12\\
+\end{tabular}
+
+Cramers Kontingenzindex:  0.5110956 \newline
+Pearson Kontingenzindex:  0.6628377 
+
+
+Nach der bereits bekannten Klassifizierung ergibt sich folgende Verteilung: \\ \newline
+\begin{tabular}{l||c|c|c}
+& niedrig & mittel & hoch \\
+\hline
+Data Science & 18 & 18 & 0\\
+Informatik  & 3 & 1 & 0 \\
+Mathe     &  0 & 14 & 7  \\
+Statistik     &0 & 27 & 12\\
+\end{tabular}
+
+Cramers Kontingenzindex:  0.486885 \newline
+Pearson Kontingenzindex:  0.5671212 
+
+\includegraphics[scale=0.8]{studienfach_interesse_mathe_mosaikplot}
+
+\subsection{Studienfach und Interesse an Informatik}
+\begin{tabular}{l||c|c|c|c|c|c|c}
+& 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+\hline
+Data Science & 0 & 0 & 0 & 0 & 5 &19 &12 \\
+  Informatik   & 0 & 0 & 0 & 0 & 1 & 2 & 1\\
+  Mathe        & 4 & 2 & 6 & 8 & 1 & 0 & 0\\
+  Statistik    & 6 & 7 & 9 &11 & 6 & 0 & 0\\
+\end{tabular}
+
+Cramers Kontingenzindex:  0.5492657 \newline
+Pearson Kontingenzindex:  0.6892657 
+
+
+Nach der bereits bekannten Klassifizierung ergibt sich folgende Verteilung: \\ \newline
+\begin{tabular}{l||c|c|c}
+& niedrig & mittel & hoch \\
+\hline
+Data Science & 0 & 24 & 12\\
+Informatik  & 0 & 3 & 1 \\
+Mathe     &  6 & 15 & 0  \\
+Statistik     &13 & 26 & 0\\
+\end{tabular}
+
+Cramers Kontingenzindex:  0.4037735 \newline
+Pearson Kontingenzindex:  0.4958728 
+
+\includegraphics[scale=0.8]{studienfach_interesse_info_mosaikplot}
+
+\subsection{Interesse an Mathe und Interesse an Informatik}
+Betrachte ab hier nur die klassifizierten Daten der Interesse an jeweils Mathe und Informatik. \\ \newline
+\begin{tabular}{cc|c|c|c}
+& \multicolumn{4}{c}{Interesse Info} \\
+& & niedrig & mittel & hoch \\
+& niedrig      & 0   &  16 &   5\\
+&  mittel      & 13  &   39  &  8\\
+&  hoch    &   6 &    13 &   0\\
+ \begin{rotate}{90} Interesse Mathe \end{rotate}&&&&
+\end{tabular}
+
+Cramers Kontingenzindex:  0.2285451 \newline
+Pearson Kontingenzindex:  0.3075465
+
+\includegraphics[scale=0.9]{interesse_mathe_info_mosaikplot}
+
+\subsection{Mathe-LK und Interesse an Mathe}
+\begin{tabular}{c|c|c|c}
+&  \multicolumn{3}{c}{Interesse an Mathe}   \\
+&  niedrig & mittel & hoch\\
+\hline
+ohne Mathe-LK & 5  & 17 & 4  \\
+ mit Mathe-LK &16 & 43 &15  \\
+\end{tabular}
+
+Cramers Kontingenzindex:  0.06810782 \newline
+Pearson Kontingenzindex:  0.06795041
+
+\includegraphics[scale=0.8]{mathelk_interesse_mathe_mosaikplot}
+
+\newpage
+\subsection{Mathe-LK und Interesse an Informatik}
+\begin{tabular}{c|c|c|c}
+&  \multicolumn{3}{c}{Interesse an Info}    \\
+&  niedrig & mittel & hoch\\
+\hline
+ ohne Mathe-LK & 1 & 18 & 7\\
+ mit Mathe-LK & 18 & 50 & 6\\
+\end{tabular}
+
+Cramers Kontingenzindex:  0.3081168 \newline
+Pearson Kontingenzindex:  0.2944564 
+
+\includegraphics[scale=0.8]{mathelk_interesse_info_mosaikplot}
+
+\end{document}
