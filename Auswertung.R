@@ -1,6 +1,8 @@
 #Auswertung.R
-#TODO Datensatz mithilfe von Funktionen-R-Skript 1.R auswerten.
-#     Ergebnisse in Dokument sammeln, in GitHub stellen. -> Diskussion!
+
+#In diesem Skript wird der Datensatz data_students.csv mit den Funktionen aus
+#dem Funktionen-R-Skript 1.R deskribiert und visualisiert. Die Ergebnisse werden
+#sinnvoll zusammengefasst und in einem .pdf Dokument dargestellt.
 
 #Datensatz laden
 dataset = read.csv("data_students.csv")
@@ -72,20 +74,20 @@ descriptBiCategoric(intMathe, intInfoCat, "Interesse an Mathe",
                     "Interesse an Info (Klassifiziert)")
 descriptBiCategoric(intMatheCat, intInfo, "Interesse an Mathe (Klassifiziert)",
                     "Interesse an Info")
-descriptBiCategoric(intMatheCat, intInfoCat, "Interesse an Mathe (klassifiziert)",
+descriptBiCategoric(intMatheCat, intInfoCat, "Interesse an Mathe (Klassifiziert)",
                     "Interesse an Info (Klassifiziert)")
 visualizeBiCategoric(intMathe, intInfo, title = "Interesse an Mathe und Intersse an Info",
                      xlabel = "Interesse an Mathe", ylabel = "Interesse an Info")
 visualizeBiCategoric(intMathe, intInfoCat, title = "Interesse an Mathe und Intersse an Info",
                      xlabel = "Interesse an Mathe", ylabel = "Interesse an Info (Klassifiziert)")
 visualizeBiCategoric(intMatheCat, intInfo, title = "Interesse an Mathe und Intersse an Info",
-                     xlabel = "Interesse an Mathe (klassifiziert)", ylabel = "Interesse an Info")
+                     xlabel = "Interesse an Mathe (Klassifiziert)", ylabel = "Interesse an Info")
 visualizeBiCategoric(intMatheCat, intInfoCat, title = "Interesse an Mathe und Intersse an Info",
-                     xlabel = "Interesse an Mathe (klassifiziert)", ylabel = "Interesse an Info (klassifiziert)")
+                     xlabel = "Interesse an Mathe (Klassifiziert)", ylabel = "Interesse an Info (Klassifiziert)")
 
 #Mathe LK und Interesse an Mathe
 descriptBiCategoric(matheLK, intMathe, "Mathe LK", "Interesse an Mathe")
-descriptBiCategoric(matheLK, intMatheCat, "Mathe LK", "Interesse an Mathe (klassifiziert)")
+descriptBiCategoric(matheLK, intMatheCat, "Mathe LK", "Interesse an Mathe (Klassifiziert)")
 visualizeBiCategoric(matheLK, intMathe, title = "Mathe LK und Interesse an Mathe",
                      xlabel = "Mathe LK", ylabel = "Interesse an Mathe")
 visualizeBiCategoric(matheLK, intMatheCat, title = "Mathe LK und Interesse an Mathe",
@@ -93,9 +95,8 @@ visualizeBiCategoric(matheLK, intMatheCat, title = "Mathe LK und Interesse an Ma
 
 #Mathe LK und Interesse an Info
 descriptBiCategoric(matheLK, intInfo, "Mathe LK", "Interesse an Info")
-descriptBiCategoric(matheLK, intInfoCat, "Mathe LK", "Interesse an Info (klassifiziert)")
+descriptBiCategoric(matheLK, intInfoCat, "Mathe LK", "Interesse an Info (Klassifiziert)")
 visualizeBiCategoric(matheLK, intInfo, title = "Mathe LK und Interesse an Info",
-                     xlabel = "Info LK", ylabel = "Interesse an Info")
+                     xlabel = "Mathe LK", ylabel = "Interesse an Info")
 visualizeBiCategoric(matheLK, intInfoCat, title = "Mathe LK und Interesse an Info",
-                     xlabel = "Info LK", ylabel = "Interesse an Info (Klassifiziert)")
-
+                     xlabel = "Mathe LK", ylabel = "Interesse an Info (Klassifiziert)")

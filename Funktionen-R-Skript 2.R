@@ -5,7 +5,8 @@
 #Short:     Berechnet den Modus einer Variablen
 #Input:     x - Variable (als Vektor)
 #Output:    Der/die haeufigste/n Wert/e
-#Funktion:  #TODO
+#Funktion:  Isoliert alle einzigartigen Elemente in u, Vergleicht wie häufig
+#           jedes Element in x vorkommt, gibt häufigste/s Element/e zurück
 modus <- function(x) {
   u <- unique(x)
   tab <- tabulate(match(x, u))
